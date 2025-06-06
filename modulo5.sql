@@ -22,4 +22,3 @@ WHERE autor.nacionalidade <> 'Brasil';
 
 
 
-

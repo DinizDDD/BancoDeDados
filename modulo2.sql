@@ -1,3 +1,4 @@
+-- Inserção de autores
 INSERT INTO autor (id_autor, nome, nacionalidade) VALUES
     (1, 'Clarice Lispector', 'Brasil'),
     (2, 'Machado de Assis', 'Brasil'),
@@ -5,6 +6,7 @@ INSERT INTO autor (id_autor, nome, nacionalidade) VALUES
     (4, 'William Shakespeare', 'Grã-Bretanha'),
     (5, 'Mario Quintana', 'Brasil');
 
+-- Inserção de livros
 INSERT INTO livro (id_livro, titulo, ano_publicacao, id_autor, preco) VALUES
     (1, 'Atlas Mundial', 1910, 1, 4.00),
     (2, 'Tomo Amplificador', 1950, 2, 4.00),
@@ -15,6 +17,7 @@ INSERT INTO livro (id_livro, titulo, ano_publicacao, id_autor, preco) VALUES
     (7, 'Pox Arcana', 1930, 2, 30.00),
     (8, 'Rito da Ruína', 1920, 3, 25.00);
 
+-- Inserção de clientes
 INSERT INTO cliente (id_cliente, nome, email, cidade) VALUES
     (1, 'Galio', 'galiozin@gmail.com', 'Demacia'),
     (2, 'Aurora', 'rorinha@gmail.com', 'Freljord'),
@@ -22,6 +25,7 @@ INSERT INTO cliente (id_cliente, nome, email, cidade) VALUES
     (4, 'Lillia', 'lilizinha@gmail.com', 'Ionia'),
     (5, 'Nunu e Willup', 'nuwillup@gmail.com', 'Freljord');
 
+-- Inserção de vendas
 INSERT INTO venda (id_venda, id_cliente, id_livro, data_venda, quantidade) VALUES
     (1, 1, 1, '2024-05-01', 2),
     (2, 2, 3, '2024-05-03', 1),
@@ -34,7 +38,9 @@ INSERT INTO venda (id_venda, id_cliente, id_livro, data_venda, quantidade) VALUE
     (9, 4, 1, '2024-05-13', 1),
     (10, 5, 2, '2024-05-14', 2);
 
+-- Atualização de preço
 UPDATE livro SET preco = 5.00 WHERE id_livro = 2;
 
+-- Exclusão de dados
 DELETE FROM venda WHERE id_cliente = 4;
 DELETE FROM cliente WHERE id_cliente = 4;
