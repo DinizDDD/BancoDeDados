@@ -47,3 +47,65 @@ VALUES ('João Silva', 'joaos', '123456');
 CALL autentica_usuario('mariao', 'senha@2025', @resultado);
 
 SELECT @resultado;
+
+--> criação da tabela 'locais'
+
+CREATE TABLE locais (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome_cliente VARCHAR(100),
+    cidade VARCHAR(50),
+    estado VARCHAR(50),
+    regiao VARCHAR(50)
+);
+
+--> criação de procedimento armazenando dos dados.
+
+DELIMITER $$
+
+CREATE PROCEDURE inserir_local(
+    IN p_nome_cliente VARCHAR(50),
+    IN p_cidade VARCHAR(50),
+    IN p_estado VARCHAR(50),
+    IN p_regiao VARCHAR(50)
+);
+BEGIN
+    INSERT locais (nome_cliente, cidade, estado, regiao) VALUES 
+    (p_nome_cliente, p_cidade, p_estado, p_regiao);
+END $$
+
+DELIMITER ; 
+
+--> exemplo de chamada do procedimento
+
+CALL inserir_local('Maria Silva', 'São Paulo', 'SP', 'Sudeste');
+
+CALL inserir_local('João Silva', 'Rio de Janeiro', 'RJ', 'Sudeste');
+
+CALL inserir_local('Maria Pereira', 'São Paulo', 'SP', 'Sudeste');
+
+CALL inserir_local('Carlos Souza', 'Rio de Janeiro', 'RJ' 'Sudeste');
+
+CALL inserir_local('Ana Lima', 'Belo Horizonte', 'MG' 'Sudeste');
+
+CALL inserir_local('Pedro Rocha', 'São Paulo', 'SP' 'Sudeste');
+
+CALL inserir_local('Luciana Alves', 'Rio de Janeiro', 'SP' 'Sudeste');
+
+--> consulta para verificar dados inseridos
+
+SELECT * FROM locais;
+
+DELIMITER $$
+
+CREATE PROCEDURE SelecionaClientesPorCidade(IN p_cidade VARCHAR(50))
+BEGIN
+    SELECT *
+    FROM locais
+    WHERE cidade = p_cidade;
+END $$
+
+DELIMITER ;
+
+CALL SelecionaClientesPorCidade('São Paulo')
+
+
