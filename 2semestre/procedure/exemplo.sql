@@ -108,4 +108,77 @@ DELIMITER ;
 
 CALL SelecionaClientesPorCidade('São Paulo')
 
+-- 5 Criar procedimento ContaClientes
 
+DELIMITER $$
+
+CREATE PROCEDURE ContaClientesPorCidade(
+	IN p_cidade VARCHAR(50)
+	OUT total INT
+)
+BEGIN
+	SELECT COUNT(8) INTO total
+	FROM locais
+	WHERE cidade = p_cidade;
+END $$
+
+DELIMITER ;
+
+-- Exemplo de chamada do procedimento
+
+CALL ContaClientesPorCidade ('Rio de Janeiro', @qtd);
+SELECT @qtd;
+
+-- 6 Exemplo IF: Verificar em que região está uma cidade.
+
+DELIMITER $$
+
+CREATE PROCEDURE verificar_regiao(
+    IN p_cidade VARCHAR(50),
+    OUT mensagem VARCHAR(100)
+)
+BEGIN
+    DECLARE reg VARCHAR(50);
+
+    SELECT regiao INTO reg FROM locais WHERE cidade = p_cidade LIMIT 1;
+
+    IF reg IS NULL THEN
+        SET mensagem = 'Cidade não encontrada';
+    ELSEIF reg = 'Sudeste' THEN
+        SET mensagem = CONTAT('A cidade ', p_cidade, ' está na região Sudeste.');
+    ELSE
+        SET mensagem = CONTAT('A cidade ', p_cidade, ' está em outra região.');
+    END IF;
+END $$
+
+DELIMITER ;
+
+-- Chamada para Verificar_regiao.
+
+CALL verificar_regiao('São Paulo', @msg);
+SELECT @msg;
+
+DELIMITER $$
+
+CREATE PROCEDURE contar_locais_regiao(
+    IN p_regiao VARCHAR(50),
+    OUT total INT
+)
+BEGIN
+    DECLARE contador INT DEFAULT 0;
+    DECLARE atual INT DEFAULT 0;
+
+    SELECT COUNT(*) INTO total FROM locais WHERE regiao = p_regiao;
+
+    SET contador = total;
+    SET atual = 0;
+
+    WHILE atual < contador DO
+        SET atual = atual + 1;
+    END WHILE;
+END $$
+
+DELIMITER ;
+
+CALL contar_locais_regiao('Sudeste', @total);
+SELECT @total;
