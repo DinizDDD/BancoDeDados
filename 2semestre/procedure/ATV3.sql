@@ -1,32 +1,31 @@
-DROP DATABASE SistemaHospitalar;
-
+DROP DATABASE IF EXISTS SistemaHospitalar;
 CREATE DATABASE SistemaHospitalar;
-
 USE SistemaHospitalar;
 
+
 CREATE TABLE Especialidade (
-    IdEspecialidade INT IDENTITY(1,1) PRIMARY KEY,
+    IdEspecialidade INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Medico (
-    IdMedico INT IDENTITY(1,1) PRIMARY KEY,
+    IdMedico INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(150) NOT NULL,
     IdEspecialidade INT NOT NULL,
     CONSTRAINT FK_Medico_Especialidade FOREIGN KEY (IdEspecialidade) REFERENCES Especialidade(IdEspecialidade)
 );
 
 CREATE TABLE Paciente (
-    IdPaciente INT IDENTITY(1,1) PRIMARY KEY,
+    IdPaciente INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(150) NOT NULL,
     DataNascimento DATE NULL
 );
 
 CREATE TABLE Atendimento (
-    IdAtendimento INT IDENTITY(1,1) PRIMARY KEY,
+    IdAtendimento INT AUTO_INCREMENT PRIMARY KEY,
     IdMedico INT NOT NULL,
     IdPaciente INT NOT NULL,
-    DataAtendimento DATETIME NOT NULL DEFAULT GETDATE(),
+    DataAtendimento TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT FK_Atendimento_Medico FOREIGN KEY (IdMedico) REFERENCES Medico(IdMedico),
     CONSTRAINT FK_Atendimento_Paciente FOREIGN KEY (IdPaciente) REFERENCES Paciente(IdPaciente)
 );
