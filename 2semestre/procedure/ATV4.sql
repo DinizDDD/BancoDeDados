@@ -55,13 +55,19 @@ INSERT INTO Categoria (Nome) VALUES
 INSERT INTO Produto (Nome, Preco, IdCategoria) VALUES
 ('Smartphone X10', 2500.00, 1),
 ('Notebook Pro 15', 5400.00, 1),
+('Tablet Maxi', 1200.00, 1),
+('Mouse Óptico Pro', 79.90, 1),
 ('Camiseta Algodão', 49.90, 2),
 ('Jaqueta Jeans', 159.90, 2),
+('Calça Sarja Masculina', 129.90, 2),
 ('Romance - A Casa do Lago', 38.50, 3),
+('Programação Avançada em Python', 89.90, 3),
 ('Fone Bluetooth', 129.90, 4),
 ('Relógio Digital', 199.90, 4),
+('Carteira de Couro', 89.90, 4),
 ('Cadeira Gamer', 850.00, 5),
-('Mesa Escritório', 650.00, 5);
+('Mesa Escritório', 650.00, 5),
+('Criado-Mudo Madeira', 290.00, 5);
 
 INSERT INTO Cliente (Nome, Email) VALUES
 ('Ana Pereira', 'ana.pereira@email.com'),
@@ -79,23 +85,28 @@ INSERT INTO Pedido (IdCliente, IdVendedor, DataPedido) VALUES
 (2, 2, '2025-01-15 10:45:00'),
 (3, 1, '2025-02-05 09:20:00'),
 (1, 3, '2025-02-20 16:50:00'),
-(4, 2, '2025-03-01 11:00:00');
+(4, 2, '2025-03-01 11:00:00'),
+(2, 1, '2025-03-10 13:00:00'),
+(3, 3, '2025-03-15 15:20:00');
 
 INSERT INTO ItemPedido (IdPedido, IdProduto, Quantidade, ValorUnitario) VALUES
 (1, 1, 1, 2500.00),
-(1, 6, 2, 129.90),
-
-(2, 3, 3, 49.90),
-(2, 7, 1, 199.90),
-
+(1, 4, 2, 79.90),
+(2, 5, 2, 49.90),
+(2, 6, 1, 159.90),
+(2, 10, 1, 129.90),
 (3, 2, 1, 5400.00),
-(3, 5, 1, 38.50),
-
-(4, 8, 1, 850.00),
-(4, 6, 1, 129.90),
-
-(5, 9, 1, 650.00),
-(5, 4, 1, 159.90);
+(3, 8, 1, 38.50),
+(3, 9, 1, 89.90),
+(4, 13, 1, 850.00),
+(4, 11, 1, 199.90),
+(4, 12, 1, 89.90),
+(5, 14, 1, 650.00),
+(5, 15, 1, 290.00),
+(6, 9, 1, 89.90),
+(6, 3, 1, 1200.00),
+(7, 5, 1, 49.90),
+(7, 7, 1, 129.90);
 
 DELIMITER $$
 
